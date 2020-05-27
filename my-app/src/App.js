@@ -3,16 +3,17 @@ import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Timeline } from "react-twitter-widgets";
+import { Timeline } from "react-twitter-widgets"; //required for twitter widget even though not used
 import Navbar from "react-bootstrap/Navbar";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Badge from "react-bootstrap/Badge";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import axios from "axios";
 
 const url = "https://coronavirus-19-api.herokuapp.com/countries/bahrain";
+const url1 = "https://pomber.github.io/covid19/timeseries.json";
 
 const fetchData = async () => {
   try {
@@ -21,17 +22,29 @@ const fetchData = async () => {
   } catch (error) {}
 };
 
+const fetchDailyData = async () => {
+  try {
+    const response = await axios.get(url1);
+    return response;
+  } catch (error) {}
+};
+
 class App extends React.Component {
   state = {
     bhdata: {},
+    dailyData: [],
   };
 
   async componentDidMount() {
     const getit = await fetchData();
+    const getit1 = await fetchDailyData();
     this.setState({ bhdata: getit.data });
+    this.setState({ dailyData: getit1.data.Bahrain });
   }
   render() {
     const { bhdata } = this.state;
+    const { dailyData } = this.state;
+    console.log(dailyData);
     console.log(bhdata);
     return (
       <div className="App">
@@ -110,7 +123,7 @@ class App extends React.Component {
         </Jumbotron>
 
         <Jumbotron>
-          <h2>Chart</h2>
+          <h2>Charts</h2>
           <Bar
             data={{
               labels: ["Infected", "Recovered", "Deaths"],
@@ -130,6 +143,42 @@ class App extends React.Component {
             height={300}
             options={{
               legend: { display: false },
+              maintainAspectRatio: false,
+            }}
+          />
+        </Jumbotron>
+        <Jumbotron>
+          <Line
+            data={{
+              labels: dailyData.map(({ date }) => date),
+              datasets: [
+                {
+                  data: dailyData.map((data) => data.confirmed),
+                  label: "Infected",
+                  borderColor: "#ffc107",
+                  backgroundColor: "rgba(255, 193, 7, 0.5)",
+                  fill: true,
+                },
+                {
+                  data: dailyData.map((data) => data.recovered),
+                  label: "Recovered",
+                  borderColor: "rgba(40, 167, 69, 1)",
+                  backgroundColor: "rgba(40, 167, 69, 0.5)",
+                  fill: true,
+                },
+                {
+                  data: dailyData.map((data) => data.deaths),
+                  label: "Deaths",
+                  borderColor: "rgba(220, 53, 69, 1)",
+                  backgroundColor: "rgba(220, 53, 69, 0.5)",
+                  fill: true,
+                },
+              ],
+            }}
+            width={650}
+            height={300}
+            options={{
+              legend: { display: true },
               maintainAspectRatio: false,
             }}
           />
@@ -154,9 +203,7 @@ class App extends React.Component {
                 data-chrome="nofooter"
                 height="500"
                 width="650"
-              >
-                timeline
-              </a>
+              ></a>
             </Card>
           </CardDeck>
         </Jumbotron>
