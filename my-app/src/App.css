@@ -3,6 +3,12 @@
   justify-content: center;
 }
 
+@media (max-width: 576px) {
+  .card {
+    width: 100% !important;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
