@@ -12,10 +12,11 @@ import Badge from "react-bootstrap/Badge";
 import { Bar, Line } from "react-chartjs-2";
 import axios from "axios";
 
-const url = "https://coronavirus-19-api.herokuapp.com/countries/bahrain";
-const url1 = "https://pomber.github.io/covid19/timeseries.json";
+const url = "https://coronavirus-19-api.herokuapp.com/countries/bahrain"; //for card data
+const url1 = "https://pomber.github.io/covid19/timeseries.json"; //for curve chart data
 
 const fetchData = async () => {
+  //fetch for card
   try {
     const response = await axios.get(url);
     return response;
@@ -23,6 +24,7 @@ const fetchData = async () => {
 };
 
 const fetchDailyData = async () => {
+  //fetch for curve chart
   try {
     const response = await axios.get(url1);
     return response;
@@ -52,9 +54,9 @@ class App extends React.Component {
           <Navbar.Brand href="#home">
             <img
               alt=""
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Emblem_of_Bahrain.svg/593px-Emblem_of_Bahrain.svg.png"
-              width="50"
-              height="50"
+              src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/apple/237/flag-for-bahrain_1f1e7-1f1ed.png"
+              width="72"
+              height="72"
               className="d-inline-block align-center"
             />{" "}
             BAHRAIN COVID-19 TRACKER
