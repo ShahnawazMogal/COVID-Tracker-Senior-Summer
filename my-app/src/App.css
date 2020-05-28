@@ -7,6 +7,9 @@
   .card {
     width: 100% !important;
   }
+  .navbar-expand {
+    flex-flow: column wrap !important;
+  }
 }
 
 .card {

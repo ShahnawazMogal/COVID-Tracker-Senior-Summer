@@ -204,7 +204,7 @@ class App extends React.Component {
                 href="https://twitter.com/MOH_Bahrain"
                 data-chrome="nofooter"
                 height="500"
-                width="650"
+                width="100%"
               ></a>
             </Card>
           </CardDeck>
