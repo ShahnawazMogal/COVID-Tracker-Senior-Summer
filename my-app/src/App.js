@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Timeline } from "react-twitter-widgets"; //required for twitter widget even though not used
 import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -12,6 +13,7 @@ import Badge from "react-bootstrap/Badge";
 import Spinner from "react-bootstrap/Spinner";
 import { Bar, Line } from "react-chartjs-2";
 import CountUp from "react-countup";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const url = "https://disease.sh/v2/countries/bahrain?yesterday=false"; //for card data
@@ -67,6 +69,16 @@ class App extends React.Component {
             <Navbar.Text>Developed by Shahnawaz Mogal </Navbar.Text>
           </Navbar.Collapse>{" "}
         </Navbar>
+        <Nav justify variant="tabs" defaultActiveKey="/">
+          <Nav.Item>
+            <Nav.Link href="/">Tracking Dashboard</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="/discussion" href="/discussion">
+              Discussion
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
 
         {!bhdata.active && ( //In case API call is taking time
           <div>
@@ -299,4 +311,40 @@ class App extends React.Component {
   }
 }
 
-export default App;
+class Discussion extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="#home">
+            <img
+              alt=""
+              src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/apple/237/flag-for-bahrain_1f1e7-1f1ed.png"
+              width="72"
+              height="72"
+              className="d-inline-block align-center"
+            />{" "}
+            BAHRAIN COVID-19 TRACKER
+          </Navbar.Brand>
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>Developed by Shahnawaz Mogal </Navbar.Text>
+          </Navbar.Collapse>{" "}
+        </Navbar>
+        <Nav justify variant="tabs" defaultActiveKey="/discussion">
+          <Nav.Item>
+            <Nav.Link href="/">Tracking Dashboard</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="/discussion" href="/discussion">
+              Discussion
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+
+        <h2>This is the discussion page</h2>
+      </div>
+    );
+  }
+}
+
+export { App, Discussion };
