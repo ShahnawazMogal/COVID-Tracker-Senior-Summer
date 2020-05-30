@@ -269,7 +269,6 @@ class App extends React.Component {
               />
             </Jumbotron>
             <MinistryInfoComponent></MinistryInfoComponent>
-            <DisqusComponent></DisqusComponent>
           </div>
         )}
         <Navbar bg="dark" variant="dark">
