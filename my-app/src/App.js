@@ -269,7 +269,6 @@ class App extends React.Component {
               />
             </Jumbotron>
             <MinistryInfoComponent></MinistryInfoComponent>
-            <DisqusComponent></DisqusComponent>
           </div>
         )}
         <Navbar bg="dark" variant="dark">
@@ -316,8 +315,7 @@ class Discussion extends React.Component {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-
-        <h2>This is the discussion page</h2>
+        <DisqusComponent></DisqusComponent>
       </div>
     );
   }
