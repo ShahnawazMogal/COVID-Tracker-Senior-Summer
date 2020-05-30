@@ -262,19 +262,23 @@ class App extends React.Component {
                   <iframe
                     src="https://www.moh.gov.bh/COVID19/News"
                     width="100%"
-                    height="600"
+                    height="100%"
                   >
                     <p>Your browser does not support iframes.</p>
                   </iframe>
                 </Card>
                 <Card>
-                  <a
-                    class="twitter-timeline"
-                    href="https://twitter.com/MOH_Bahrain"
-                    data-chrome="nofooter"
-                    height="600"
-                    width="100%"
-                  ></a>
+                  <Timeline
+                    dataSource={{
+                      sourceType: "profile",
+                      screenName: "MOH_Bahrain",
+                    }}
+                    options={{
+                      username: "MOH_Bahrain",
+                      height: "600",
+                    }}
+                    onLoad={() => console.log("Timeline is loaded!")}
+                  />
                 </Card>
               </CardDeck>
             </Jumbotron>
