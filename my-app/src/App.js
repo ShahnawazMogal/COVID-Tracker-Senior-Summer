@@ -2,7 +2,6 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MinistryInfoComponent from "./Components/MinistryInfoComponent";
 import { Timeline } from "react-twitter-widgets"; //required for twitter widget even though not used
 import Navbar from "react-bootstrap/Navbar";
 import Card from "react-bootstrap/Card";
@@ -13,6 +12,9 @@ import Spinner from "react-bootstrap/Spinner";
 import { Bar, Line } from "react-chartjs-2";
 import CountUp from "react-countup";
 import axios from "axios";
+
+import MinistryInfoComponent from "./Components/MinistryInfoComponent";
+import DisqusComponent from "./Components/DisqusComponent";
 
 const url = "https://disease.sh/v2/countries/bahrain?yesterday=false"; //for card data
 const url1 = "https://pomber.github.io/covid19/timeseries.json"; //for curve chart data
@@ -255,6 +257,7 @@ class App extends React.Component {
               />
             </Jumbotron>
             <MinistryInfoComponent></MinistryInfoComponent>
+            <DisqusComponent></DisqusComponent>
           </div>
         )}
         <Navbar bg="dark" variant="dark">
