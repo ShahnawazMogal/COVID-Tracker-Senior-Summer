@@ -2,7 +2,6 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { Timeline } from "react-twitter-widgets"; //required for twitter widget even though not used
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -15,6 +14,9 @@ import { Bar, Line } from "react-chartjs-2";
 import CountUp from "react-countup";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
+import MinistryInfoComponent from "./Components/MinistryInfoComponent";
+import DisqusComponent from "./Components/DisqusComponent";
 
 const url = "https://disease.sh/v2/countries/bahrain?yesterday=false"; //for card data
 const url1 = "https://pomber.github.io/covid19/timeseries.json"; //for curve chart data
@@ -266,34 +268,8 @@ class App extends React.Component {
                 }}
               />
             </Jumbotron>
-
-            <Jumbotron>
-              <h2>Information from Ministry of Health</h2>
-              <CardDeck>
-                <Card>
-                  <iframe
-                    src="https://www.moh.gov.bh/COVID19/News"
-                    width="100%"
-                    height="100%"
-                  >
-                    <p>Your browser does not support iframes.</p>
-                  </iframe>
-                </Card>
-                <Card>
-                  <Timeline
-                    dataSource={{
-                      sourceType: "profile",
-                      screenName: "MOH_Bahrain",
-                    }}
-                    options={{
-                      username: "MOH_Bahrain",
-                      height: "600",
-                    }}
-                    onLoad={() => console.log("Timeline is loaded!")}
-                  />
-                </Card>
-              </CardDeck>
-            </Jumbotron>
+            <MinistryInfoComponent></MinistryInfoComponent>
+            <DisqusComponent></DisqusComponent>
           </div>
         )}
         <Navbar bg="dark" variant="dark">
