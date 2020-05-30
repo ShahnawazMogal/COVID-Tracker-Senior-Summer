@@ -316,8 +316,7 @@ class Discussion extends React.Component {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-
-        <h2>This is the discussion page</h2>
+        <DisqusComponent></DisqusComponent>
       </div>
     );
   }
