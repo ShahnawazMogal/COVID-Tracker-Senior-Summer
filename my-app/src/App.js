@@ -14,7 +14,7 @@ import { Bar, Line } from "react-chartjs-2";
 import CountUp from "react-countup";
 import axios from "axios";
 
-const url = "https://coronavirus-19-api.herokuapp.com/countries/bahrain"; //for card data
+const url = "https://disease.sh/v2/countries/bahrain?yesterday=false"; //for card data
 const url1 = "https://pomber.github.io/covid19/timeseries.json"; //for curve chart data
 
 const fetchData = async () => {
@@ -131,7 +131,7 @@ class App extends React.Component {
                     <Card.Title>
                       <CountUp
                         start={0}
-                        end={bhdata.totalTests}
+                        end={bhdata.tests}
                         duration={2.5}
                         separator=","
                       />
@@ -280,6 +280,16 @@ class App extends React.Component {
             </Jumbotron>
           </div>
         )}
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Collapse className="justify-content-start">
+            <Navbar.Text>
+              Contact developer: shahnawazbaigmogal@outlook.com{" "}
+            </Navbar.Text>
+          </Navbar.Collapse>{" "}
+          <Navbar.Collapse className="justify-content-start">
+            <Navbar.Text>Data is automatically updated every hour </Navbar.Text>
+          </Navbar.Collapse>{" "}
+        </Navbar>
       </div>
     );
   }
