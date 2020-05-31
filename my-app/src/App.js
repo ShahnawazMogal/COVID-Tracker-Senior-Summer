@@ -57,12 +57,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/apple/237/flag-for-bahrain_1f1e7-1f1ed.png"
-              width="72"
-              height="72"
+              width="50"
+              height="50"
               className="d-inline-block align-center"
             />{" "}
             BAHRAIN COVID-19 TRACKER
@@ -73,7 +73,7 @@ class App extends React.Component {
         </Navbar>
         <Nav justify variant="tabs" defaultActiveKey="/">
           <Nav.Item>
-            <Nav.Link href="/">Tracking Dashboard</Nav.Link>
+            <Nav.Link href="/">Dashboard</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="/discussion" href="/discussion">
@@ -209,65 +209,93 @@ class App extends React.Component {
 
             <Jumbotron>
               <h2>Charts</h2>
-              <Bar
-                data={{
-                  labels: ["Infected", "Recovered", "Deaths"],
-                  datasets: [
-                    {
-                      label: "People",
-                      backgroundColor: [
-                        "rgba(255, 193, 7, 1)",
-                        "rgba(40, 167, 69, 1)",
-                        "rgba(220, 53, 69, 1)",
-                      ],
-                      data: [bhdata.cases, bhdata.recovered, bhdata.deaths],
-                    },
-                  ],
-                }}
-                width={650}
-                height={300}
-                options={{
-                  legend: { display: false },
-                  maintainAspectRatio: false,
-                }}
-              />
+              <Jumbotron>
+                <Bar
+                  data={{
+                    labels: ["Infected", "Recovered", "Deaths"],
+                    datasets: [
+                      {
+                        label: "People",
+                        backgroundColor: [
+                          "rgba(255, 193, 7, 1)",
+                          "rgba(40, 167, 69, 1)",
+                          "rgba(220, 53, 69, 1)",
+                        ],
+                        data: [bhdata.cases, bhdata.recovered, bhdata.deaths],
+                      },
+                    ],
+                  }}
+                  width={650}
+                  height={300}
+                  options={{
+                    legend: { display: false },
+                    maintainAspectRatio: false,
+                  }}
+                />
+              </Jumbotron>
+              <Jumbotron>
+                <Line
+                  data={{
+                    labels: dailyData.map(({ date }) => date),
+                    datasets: [
+                      {
+                        data: dailyData.map((data) => data.confirmed),
+                        label: "Infected",
+                        borderColor: "#ffc107",
+                        backgroundColor: "rgba(255, 193, 7, 0.5)",
+                        fill: true,
+                      },
+                      {
+                        data: dailyData.map((data) => data.recovered),
+                        label: "Recovered",
+                        borderColor: "rgba(40, 167, 69, 1)",
+                        backgroundColor: "rgba(40, 167, 69, 0.5)",
+                        fill: true,
+                      },
+                      {
+                        data: dailyData.map((data) => data.deaths),
+                        label: "Deaths",
+                        borderColor: "rgba(220, 53, 69, 1)",
+                        backgroundColor: "rgba(220, 53, 69, 0.5)",
+                        fill: true,
+                      },
+                    ],
+                  }}
+                  width={650}
+                  height={300}
+                  options={{
+                    legend: { display: true },
+                    maintainAspectRatio: false,
+                  }}
+                />
+              </Jumbotron>
+
+              <Jumbotron>
+                <Line
+                  data={{
+                    labels: dailyData.map(({ date }) => date),
+                    datasets: [
+                      {
+                        data: dailyData.map(
+                          (data) => data.confirmed - data.recovered
+                        ),
+                        label: "Active Cases",
+                        borderColor: "#ffc107",
+                        backgroundColor: "rgba(255, 193, 7, 0.5)",
+                        fill: true,
+                      },
+                    ],
+                  }}
+                  width={650}
+                  height={300}
+                  options={{
+                    legend: { display: true },
+                    maintainAspectRatio: false,
+                  }}
+                />
+              </Jumbotron>
             </Jumbotron>
-            <Jumbotron>
-              <Line
-                data={{
-                  labels: dailyData.map(({ date }) => date),
-                  datasets: [
-                    {
-                      data: dailyData.map((data) => data.confirmed),
-                      label: "Infected",
-                      borderColor: "#ffc107",
-                      backgroundColor: "rgba(255, 193, 7, 0.5)",
-                      fill: true,
-                    },
-                    {
-                      data: dailyData.map((data) => data.recovered),
-                      label: "Recovered",
-                      borderColor: "rgba(40, 167, 69, 1)",
-                      backgroundColor: "rgba(40, 167, 69, 0.5)",
-                      fill: true,
-                    },
-                    {
-                      data: dailyData.map((data) => data.deaths),
-                      label: "Deaths",
-                      borderColor: "rgba(220, 53, 69, 1)",
-                      backgroundColor: "rgba(220, 53, 69, 0.5)",
-                      fill: true,
-                    },
-                  ],
-                }}
-                width={650}
-                height={300}
-                options={{
-                  legend: { display: true },
-                  maintainAspectRatio: false,
-                }}
-              />
-            </Jumbotron>
+
             <MinistryInfoComponent></MinistryInfoComponent>
           </div>
         )}
@@ -277,7 +305,7 @@ class App extends React.Component {
               Contact developer: shahnawazbaigmogal@outlook.com{" "}
             </Navbar.Text>
           </Navbar.Collapse>{" "}
-          <Navbar.Collapse className="justify-content-start">
+          <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>Data is automatically updated every hour </Navbar.Text>
           </Navbar.Collapse>{" "}
         </Navbar>
@@ -291,12 +319,12 @@ class Discussion extends React.Component {
     return (
       <div className="App">
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/apple/237/flag-for-bahrain_1f1e7-1f1ed.png"
-              width="72"
-              height="72"
+              width="50"
+              height="50"
               className="d-inline-block align-center"
             />{" "}
             BAHRAIN COVID-19 TRACKER
@@ -307,7 +335,7 @@ class Discussion extends React.Component {
         </Navbar>
         <Nav justify variant="tabs" defaultActiveKey="/discussion">
           <Nav.Item>
-            <Nav.Link href="/">Tracking Dashboard</Nav.Link>
+            <Nav.Link href="/">Dashboard</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="/discussion" href="/discussion">
@@ -315,7 +343,30 @@ class Discussion extends React.Component {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-        <DisqusComponent></DisqusComponent>
+
+        <Jumbotron>
+          <h1>Hello, Bahrain!</h1>
+          <p>Welcome to the Bahrain Covid-19 discussion page</p>
+          <p>
+            Here you can discuss any developments related to COVID-19 in
+            Bahrain, ask and answer questions, post quarantine images, seek for
+            help, submit advice and more
+          </p>
+          <p>Login using your Facebook, Google, Twitter or Disqus account</p>
+          <Badge variant="danger">↓Scroll down and get started↓</Badge>{" "}
+        </Jumbotron>
+
+        <Jumbotron>
+          <DisqusComponent />
+        </Jumbotron>
+
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Collapse className="justify-content-start">
+            <Navbar.Text>
+              Contact developer: shahnawazbaigmogal@outlook.com{" "}
+            </Navbar.Text>
+          </Navbar.Collapse>{" "}
+        </Navbar>
       </div>
     );
   }

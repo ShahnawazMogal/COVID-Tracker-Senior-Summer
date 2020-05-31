@@ -12,6 +12,25 @@
   }
 }
 
+.nav {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.nav-tabs .nav-link {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.jumbotron {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0 !important;
+  border-radius: 1.3rem !important;
+}
+
 .card {
   border-radius: 2.25rem !important;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import { Timeline } from "react-twitter-widgets"; //required for twitter widget even though not used
 
 class MinistryInfo extends React.Component {
   render() {
@@ -20,13 +21,17 @@ class MinistryInfo extends React.Component {
               </iframe>
             </Card>
             <Card>
-              <a
-                class="twitter-timeline"
-                href="https://twitter.com/MOH_Bahrain"
-                data-chrome="nofooter"
-                height="600"
-                width="100%"
-              ></a>
+              <Timeline
+                dataSource={{
+                  sourceType: "profile",
+                  screenName: "MOH_Bahrain",
+                }}
+                options={{
+                  username: "MOH_Bahrain",
+                  height: "600",
+                }}
+                onLoad={() => console.log("Timeline is loaded!")}
+              />
             </Card>
           </CardDeck>
         </Jumbotron>
