@@ -1,6 +1,6 @@
-#COVID-19 Tracking Dashboard 
+# COVID-19 Tracking Dashboard 
 
-Deployed at https://www.covid19bahrain.co
+*Deployed at https://www.covid19bahrain.co*
 
 • A full stack web application using React, with the help of WHO COVID-19 API, React hooks, React router, and more.
 
