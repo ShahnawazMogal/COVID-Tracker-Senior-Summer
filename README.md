@@ -9,3 +9,6 @@
 • Uses Twitter API to fetch live Tweets posted by Ministry of Health and also contains a separate Discussion Page.
 
 • Technologies: React, HTML, CSS, JavaScript, REST API, NPM, Twitter API, Disqus API, Bootstrap.
+
+## Preview of the webpage 
+![Screenshot-1](https://github.com/ShahnawazMogal/COVID-Tracker-Senior-Summer/blob/master/Webpage-Screenshot-2.png)
